@@ -8,6 +8,14 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Force a pageview BEFORE the iframe loads
+    gtag('event', 'page_view', {
+      page_title: 'Source News Online',
+      page_location: window.location.href,
+      page_path: '/'
+    });
+
     gtag('config', 'G-GSFVZPRRST');
   </script>
 
@@ -19,6 +27,7 @@
 
 <body style="margin:0; padding:0; overflow:hidden;">
 
+  <!-- Your magazine iframe -->
   <iframe 
       src="https://heyzine.com/flip-book/29c182f42d.html"
       style="width:100%; height:100vh; border:none;" 
