@@ -1,0 +1,40 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate sitemap.xml
+        run: |
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+
+          # Add root URL
+          echo '  <url><loc>https://sourcenewsonline.org/</loc><priority>1.0</priority></url>' >> sitemap.xml
+
+          # Loop through all HTML files and folders
+          find . -type f -name "*.html" | while read file; do
+            url="https://sourcenewsonline.org/${file#./}"
+            url="${url%index.html}"
+            echo "  <url><loc>$url</loc><priority>0.6</priority></url>" >> sitemap.xml
+          done
+
+          echo '</urlset>' >> sitemap.xml
+
+      - name: Commit sitemap.xml
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add sitemap.xml
+          git commit -m "Auto-update sitemap" || echo "No changes to commit"
+          git push
