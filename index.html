@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GSFVZPRRST"></script>
-  <script>
-    window.dataLayer = window.dataLayer || []; 
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    // Force a pageview BEFORE the iframe loads
-    gtag('event', 'page_view', {
-      page_title: 'Source News Online',
-      page_location: window.location.href,
-      page_path: '/'
-    });
-
-    gtag('config', 'G-GSFVZPRRST');
-  </script>
-
   <title>Source News Online</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
-<body style="margin:0; padding:0; overflow:hidden;">
+<body style="margin:0; padding:0;">
 
-  <!-- Your magazine iframe -->
 <iframe 
-    src="https://heyzine.com/flip-book/640f9690e6.html"
-    style="width:100%; height:100vh; border:none;" 
-    allowfullscreen>
+  src="https://heyzine.com/flip-book/640f9690e6.html" 
+  width="100%" 
+  height="100%" 
+  style="border:none; position:fixed; top:0; left:0; width:100%; height:100%;">
 </iframe>
-
 
 </body>
 </html>
